@@ -82,6 +82,7 @@
 
                 users->users_roles->roles.name
              -->
+                                    <%= user.users_roles.roles_idrole_role.name %>
                                 </td>
                                 <td>
                                     <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
@@ -131,14 +132,13 @@
                             <label>Role</label>
                             <!-- 6. Arreglo de roles -->
                             <select name="idrole" class="form-control">
-                                <option value="null" selected disabled
-                                    class="form-control">Select an
+                                <option value="null" selected disabled class="form-control">Select an
                                     item</option>
-                                <% rolesArray.forEach( role => { %> 
-                                    <option 
-                                    value="<%=role.idrole%>"
-                                    class="form-control"><%=role.name%></option>
-                                <% }) %> 
+                                <% rolesArray.forEach( role=> { %>
+                                    <option value="<%=role.idrole%>" class="form-control">
+                                        <%=role.name%>
+                                    </option>
+                                    <% }) %>
                             </select>
                         </div>
 

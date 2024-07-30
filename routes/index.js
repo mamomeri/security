@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 /* POST user. */
 /* 3. Cree el callback asíncrono que responda al método POST */
 router.post('/login', async function (req, res, next) {
-
+ 
   /* 4. Desestructure los elementos en el cuerpo del requerimiento */
   let { username, password } = req.body
 

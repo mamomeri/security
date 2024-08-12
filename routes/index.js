@@ -1,4 +1,5 @@
 var express = require('express');
+var dotenv = require("dotenv").config()
 var router = express.Router();
 
 /* 1. Importe el módulo crypto */
@@ -96,5 +97,23 @@ router.get('/logout', function (req, res, next) {
   req.session.destroy();
   res.render('index');
 });
+
+
+/* Nueva ruta para generar el token */
+router.get('/token', function (req, res, next) {
+  // Verificar que el usuario esté autenticado y tenga el rol "user"
+  if (req.session.loggedin && req.session.role === 'user') {
+    const token = jwt.sign(
+      { username: req.session.username, role: req.session.role }, // Payload del token
+      process.env.TOKEN_SECRET, // Clave secreta para firmar el token
+      { expiresIn: '1h' } // Tiempo de expiración de 1 hora
+    );
+    res.json({ token: token });
+  } else {
+    res.status(403);
+    res.render('ticket');
+  }
+});
+
 
 module.exports = router;
